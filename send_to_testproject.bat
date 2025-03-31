@@ -17,10 +17,10 @@ if exist "%BUILD_DEBUG%" rmdir /S /Q "%BUILD_DEBUG%"
 cmd /c "build_windows_release.bat"
 cmd /c "build_windows_debug.bat"
 
-set "ORIGIN_RELEASE_DLL=%INSTALL_RELEASE%\bin\KalaWindow.dll"
-set "ORIGIN_RELEASE_LIB=%INSTALL_RELEASE%\lib\KalaWindow.lib"
-set "ORIGIN_DEBUG_DLL=%INSTALL_DEBUG%\bin\KalaWindowD.dll"
-set "ORIGIN_DEBUG_LIB=%INSTALL_DEBUG%\lib\KalaWindowD.lib"
+set "ORIGIN_RELEASE_DLL=%INSTALL_RELEASE%\bin\KalaUtils.dll"
+set "ORIGIN_RELEASE_LIB=%INSTALL_RELEASE%\lib\KalaUtils.lib"
+set "ORIGIN_DEBUG_DLL=%INSTALL_DEBUG%\bin\KalaUtilsD.dll"
+set "ORIGIN_DEBUG_LIB=%INSTALL_DEBUG%\lib\KalaUtilsD.lib"
 
 if not exist "%ORIGIN_RELEASE_DLL%" (
 	echo Failed to find origin release dll from '%ORIGIN_RELEASE_DLL%'!
@@ -43,7 +43,7 @@ if not exist "%ORIGIN_DEBUG_LIB%" (
 	exit /b 1
 )
 
-set "TARGET_ROOT=%INPUT_ROOT%..\KalaTestProject\_external_shared\KalaWindow"
+set "TARGET_ROOT=%INPUT_ROOT%..\KalaTestProject\_external_shared\KalaUtils"
 
 if not exist "%TARGET_ROOT%" (
 	echo Failed to find target root from '%TARGET_ROOT%'!
@@ -51,10 +51,10 @@ if not exist "%TARGET_ROOT%" (
 	exit /b 1
 )
 
-set "TARGET_RELEASE_DLL=%TARGET_ROOT%\release\KalaWindow.dll"
-set "TARGET_RELEASE_LIB=%TARGET_ROOT%\release\KalaWindow.lib"
-set "TARGET_DEBUG_DLL=%TARGET_ROOT%\debug\KalaWindowD.dll"
-set "TARGET_DEBUG_LIB=%TARGET_ROOT%\debug\KalaWindowD.lib"
+set "TARGET_RELEASE_DLL=%TARGET_ROOT%\release\KalaUtils.dll"
+set "TARGET_RELEASE_LIB=%TARGET_ROOT%\release\KalaUtils.lib"
+set "TARGET_DEBUG_DLL=%TARGET_ROOT%\debug\KalaUtilsD.dll"
+set "TARGET_DEBUG_LIB=%TARGET_ROOT%\debug\KalaUtilsD.lib"
 
 :: Copy dll files to target path
 copy /Y "%ORIGIN_RELEASE_DLL%" "%TARGET_RELEASE_DLL%"
@@ -65,7 +65,7 @@ copy /Y "%ORIGIN_DEBUG_LIB%" "%TARGET_DEBUG_LIB%"
 :: Copy header files and inl files to target path
 xcopy /E /Y /I "%INSTALL_RELEASE%\include" "%TARGET_ROOT%\"
 
-echo Successfully installed KalaWindow!
+echo Successfully installed KalaUtils!
 
 pause
 exit /b 0
