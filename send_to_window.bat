@@ -1,11 +1,11 @@
 @echo off
 
-set "INPUT_ROOT=%~dp0"
+set "UTILS_ROOT=%~dp0"
 
-set "INSTALL_RELEASE=%INPUT_ROOT%install-release"
-set "INSTALL_DEBUG=%INPUT_ROOT%install-debug"
-set "BUILD_RELEASE=%INPUT_ROOT%build-release"
-set "BUILD_DEBUG=%INPUT_ROOT%build-debug"
+set "INSTALL_RELEASE=%UTILS_ROOT%install-release"
+set "INSTALL_DEBUG=%UTILS_ROOT%install-debug"
+set "BUILD_RELEASE=%UTILS_ROOT%build-release"
+set "BUILD_DEBUG=%UTILS_ROOT%build-debug"
 
 :: Remove old build and install folders
 if exist "%INSTALL_RELEASE%" rmdir /S /Q "%INSTALL_RELEASE%"
@@ -43,7 +43,7 @@ if not exist "%ORIGIN_DEBUG_LIB%" (
 	exit /b 1
 )
 
-set "TARGET_ROOT=%INPUT_ROOT%..\KalaTestProject\_external_shared\KalaUtils"
+set "TARGET_ROOT=%UTILS_ROOT%..\KalaWindow\_external_shared\KalaUtils"
 
 if not exist "%TARGET_ROOT%" (
 	echo Failed to find target root from '%TARGET_ROOT%'!

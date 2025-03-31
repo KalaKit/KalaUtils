@@ -46,8 +46,6 @@ set(PARENT_DIR_PATH "${PARENT_DIR}")
 # Window files
 set(KALAUTILS_SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 set(KALAUTILS_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
-set(KALAUTILS_GLM_DIR "${CMAKE_SOURCE_DIR}/include/glm")
-set(KALAUTILS_MAGIC_ENUM_DIR "${CMAKE_SOURCE_DIR}/include/magic_enum")
 
 # Add source files
 file(GLOB_RECURSE KALAUTILS_SRC_FILES CONFIGURE_DEPENDS
@@ -71,7 +69,7 @@ target_include_directories(KalaUtils PRIVATE
 )
 
 if (WIN32)
-    target_link_libraries(KalaUtils PRIVATE)
+    #target_link_libraries(KalaUtils PRIVATE)
 else()
 	find_package(Wayland QUIET)
 	find_package(X11 QUIET)
@@ -109,6 +107,4 @@ install(DIRECTORY ${KALAUTILS_INCLUDE_DIR}/
     DESTINATION include
     FILES_MATCHING 
 		PATTERN "*.hpp" 
-		PATTERN "*.h" 
-		PATTERN "*.inl"
 )
