@@ -69,7 +69,7 @@ target_include_directories(KalaUtils PRIVATE
 )
 
 if (WIN32)
-    #target_link_libraries(KalaUtils PRIVATE)
+    target_link_libraries(KalaUtils PRIVATE)
 else()
 	find_package(Wayland QUIET)
 	find_package(X11 QUIET)

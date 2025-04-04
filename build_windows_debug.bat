@@ -33,7 +33,7 @@ cmake -G "Ninja" ^
   -DCMAKE_CXX_FLAGS="/Od /ZI /EHsc /MTd" ^
   -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" ^
   -Wno-dev ^
-  "%UTILS_ROOT%" || (
+  %UTILS_ROOT% || (
     echo [ERROR] CMake configuration failed.
     exit /b 1
 )

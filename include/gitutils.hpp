@@ -17,5 +17,8 @@
 
 namespace KalaKit
 {
+	class KALAUTILS_API GitUtils
+	{
 
+	};
 }

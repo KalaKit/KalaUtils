@@ -22,15 +22,15 @@
 namespace KalaKit
 {
 #ifdef _WIN32
-	using POS = POINT; // Position, cursor location or offset.
-	using SIZE = RECT;   // Size or bounds of a region on screen.
-	using WINDOW = HWND;  // The current window that is created and running.
+	using POS = POINT;   // Position, cursor location or offset.
+	using BOUNDS = RECT; // Size or bounds of a region on screen.
+	using WINDOW = HWND; // The current window that is created and running.
 #else
 	struct POS // Position, cursor location or offset.
 	{
 		int x, y;
 	};
-	struct SIZE // Size or bounds of a region on screen.
+	struct BOUNDS // Size or bounds of a region on screen.
 	{
 		int left;
 		int top;
@@ -59,7 +59,7 @@ namespace KalaKit
 
 	class KALAUTILS_API OSUtils
 	{
-	public:
+	private:
 		static void DummyFunction();
 	};
 }

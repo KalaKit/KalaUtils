@@ -33,7 +33,7 @@ cmake -G "Ninja" ^
   -DCMAKE_C_FLAGS="/O2 /GL /DNDEBUG /EHsc /MD" ^
   -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" ^
   -Wno-dev ^
-  "%UTILS_ROOT%" || (
+  %UTILS_ROOT% || (
     echo [ERROR] CMake configuration failed.
 	pause
     exit /b 1
