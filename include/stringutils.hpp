@@ -26,7 +26,7 @@ namespace KalaKit
 	/// <summary>
 	/// Defines a simple vec3 struct instead of including the entire glm library just for string utils.
 	/// </summary>
-	struct vec3
+	struct kvec3
 	{
 		float x;
 		float y;
@@ -56,7 +56,7 @@ namespace KalaKit
 		/// Convert an inserted vector string to a vec3.
 		/// </summary>
 		/// <param name="original">A vector of string x, y and z positions.</param>
-		static vec3 StringToVec3(const vector<string>& original);
+		static kvec3 StringToVec3(const vector<string>& original);
 
 		/// <summary>
 		/// Split a string in two from the delimiter.

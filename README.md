@@ -226,9 +226,10 @@ string newCharString = StringUtils::CharReplace(originalString, searchChar, repl
 
 //converts the contents of a vector to a vec3
 //as long as the vector has 3 strings
-//which can be converted to string or float
+//which can be converted to string or float.
+//it is named kvec3 to be able to be reused along with glm::vec3
 vector<string>& originalVector{};
-vec3 result = StringUtils::StringToVec3(originalVector);
+kvec3 result = StringUtils::StringToVec3(originalVector);
 
 //returns a vector of strings that are split by the chosen delimiter 
 string inputString = "a,b,c,d";

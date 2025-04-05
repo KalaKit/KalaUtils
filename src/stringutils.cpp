@@ -54,9 +54,9 @@ namespace KalaKit
 		return result;
 	}
 
-	vec3 StringUtils::StringToVec3(const vector<string>& original)
+	kvec3 StringUtils::StringToVec3(const vector<string>& original)
 	{
-		vec3 output{};
+		kvec3 output{};
 
 		istringstream issX(original[0]);
 		istringstream issY(original[1]);

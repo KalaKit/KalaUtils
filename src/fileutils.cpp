@@ -343,13 +343,14 @@ namespace KalaKit
         }
     }
 
-    string FileUtils::AddIndex(const string& filePath)
+    string FileUtils::AddIndex(
+        const path& parentFolderPath,
+        const string& fileName,
+        const string& extension)
     {
-        string newFilePath{};
-        string fileName = path(filePath).stem().string();
-        string extension = path(filePath).extension().string();
+        string newFilePath = (path(parentFolderPath) / (fileName + extension)).string();
 
-        if (exists(filePath))
+        if (exists(newFilePath))
         {
             //extract the actual base name (before the last '(')
             string baseName = fileName;
@@ -361,7 +362,7 @@ namespace KalaKit
 
             //find highest available index for this exact base name
             int highestNumber = 1;
-            for (const auto& entry : directory_iterator(path(filePath).parent_path()))
+            for (const auto& entry : directory_iterator(parentFolderPath))
             {
                 string entryName = path(entry).stem().string();
 
@@ -377,8 +378,7 @@ namespace KalaKit
                 if (entryBaseName == baseName)
                 {
                     string entryValue = GetValueBetweenParentheses(entryName);
-                    if (!entryValue.empty() 
-                        && all_of(entryValue.begin(), entryValue.end(), ::isdigit))
+                    if (!entryValue.empty() && all_of(entryValue.begin(), entryValue.end(), ::isdigit))
                     {
                         int entryConvertedValue = stoi(entryValue);
                         if (entryConvertedValue >= highestNumber)
@@ -394,14 +394,9 @@ namespace KalaKit
             size_t cleanOpenParentPos = fileName.find_last_of('(');
             size_t cleanCloseParentPos = fileName.find_last_of(')');
 
-            if (cleanOpenParentPos != string::npos 
-                && cleanCloseParentPos != string::npos 
-                && cleanCloseParentPos > cleanOpenParentPos)
+            if (cleanOpenParentPos != string::npos && cleanCloseParentPos != string::npos && cleanCloseParentPos > cleanOpenParentPos)
             {
-                string potentialNumber = 
-                    fileName.substr(cleanOpenParentPos + 1, 
-                    cleanCloseParentPos - cleanOpenParentPos - 1);
-
+                string potentialNumber = fileName.substr(cleanOpenParentPos + 1, cleanCloseParentPos - cleanOpenParentPos - 1);
                 if (all_of(potentialNumber.begin(), potentialNumber.end(), ::isdigit))
                 {
                     cleanedFileName = fileName.substr(0, cleanOpenParentPos - 1);
@@ -413,7 +408,7 @@ namespace KalaKit
 
             //create new indexed filename
             string newFileName = cleanedFileName + " (" + to_string(highestNumber) + ")" + extension;
-            newFilePath = (path(path(filePath).parent_path()) / newFileName).string();
+            newFilePath = (path(parentFolderPath) / newFileName).string();
         }
 
         return newFilePath;

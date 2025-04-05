@@ -25,6 +25,7 @@ namespace KalaKit
 
 	class KALAUTILS_API FileUtils
 	{
+	public:
 		/// <summary>
 		/// Return the output from a bat file as a string.
 		/// </summary>
@@ -90,8 +91,13 @@ namespace KalaKit
 		/// <summary>
 		/// Add an index (1), etc after this file or folder name.
 		/// </summary>
-		/// <param name="filePath">Full path to this file or folder.</param>
-		static string AddIndex(const string& filePath);
+		/// <param name="folderPath">Parent folder of this file</param>
+		/// <param name="fileName">Name of the file the index will be added after</param>
+		/// <param name="extension">Name of the extension if this is a file</param>
+		static string AddIndex(
+			const path& folderPath,
+			const string& fileName,
+			const string& extension = "");
 	private:
 		static string GetValueBetweenParentheses(const string& input);
 	};
